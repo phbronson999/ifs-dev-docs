@@ -1,0 +1,219 @@
+---
+title: Action
+tags:
+  - ifs-marble/projection
+  - ifs-marble/construct
+aliases:
+  - action definition
+  - server action
+  - initialcheck
+  - ludependencies
+  - supportwarnings
+related:
+  - "[[Function]]"
+  - "[[Entity]]"
+  - "[[Virtual]]"
+  - "[[Commands and Expressions]]"
+  - "[[Structure]]"
+---
+
+# Action
+
+An ==action== is a projection construct that maps to a server-side procedure — it does something (creates records, sends an email, posts a transaction) and returns nothing, or optionally returns a scalar value. Actions are the "write" side of the projection layer. Every command button that changes data calls an action.
+
+In the `.plsvc` file, each action becomes an Oracle `PROCEDURE <Name>___` with the triple-underscore IFS naming convention. The framework handles the OData `POST` wiring automatically.
+
+> [!abstract] Syntax
+> ```marble
+> action <ActionName> {
+>    initialcheck <CheckName>(<param>);
+>    ludependencies = Lu1, Lu2;
+>    supportwarnings = [true];
+>
+>    parameter <ParamName> <Type>;
+>    parameter <ParamName> <Type>;
+> }
+>
+> -- Action with a scalar return value:
+> action <ActionName> <ReturnType> {
+>    ...
+>    parameter <ParamName> <Type>;
+> }
+>
+> -- Inline action on an entity (scoped to that entity):
+> entity <EntityName> {
+>    action <ActionName> {
+>       ludependencies = OtherLu;
+>    }
+> }
+> ```
+
+---
+
+## Keywords
+
+| Keyword | Required | Description |
+|---------|----------|-------------|
+| `action` | Yes | Declares the action. Name is PascalCase. |
+| `initialcheck` | No | Security check called before the action executes. Takes the name of a security function and the parameter (usually a site or entity key). Common examples: `UserAllowedSite(Contract)`, `BatchBalanceNodeInitialCheck(BalanceId, NodeId)`. |
+| `ludependencies` | No | Comma-separated list of LUs whose client cache should be invalidated after this action completes. The client will re-fetch data for these LUs. |
+| `supportwarnings` | No | `[true]` enables the framework's "soft error" / warning dialog pattern. The action can issue warnings (non-fatal messages) that the user can acknowledge and continue through. |
+| `parameter` | No | A named input parameter. Type can be `Text`, `Number`, `Boolean`, `Date`, `Timestamp`, `Enumeration(<Name>)`, or `Structure(<Name>)`. |
+| `<ReturnType>` | No | If the action returns a scalar, put the type between the name and the `{`. E.g., `action InsertBalance Number { ... }`. |
+
+---
+
+## Example — Standalone Actions in a Projection
+
+> [!example] Source: `ifs-example/shpord/model/shpord/BatchBalanceHandling.projection`
+
+```plvc
+---------------------------------- ACTIONS ----------------------------------
+
+action ConnectSupplyToBalance {
+   -- Security: user must have access to this site before the action runs
+   initialcheck UserAllowedSite(Contract);
+   parameter BalanceId Number;
+   parameter Contract Text;
+   parameter OrderRef1 Text;
+   parameter OrderRef2 Text;
+   parameter OrderRef3 Text;
+   -- Enumeration as a parameter type
+   parameter OrderType Enumeration(BatchBalanceOrderType);
+   -- Invalidate these LUs in the client after the action completes
+   ludependencies = BatchBalance, BatchBalanceNode, BatchBalanceDemandAvailable, ConnectToSupplyStructure;
+   -- Allow the action to return warnings the user can accept or cancel
+   supportwarnings = [true];
+}
+
+-- Action with a scalar return value (returns the new BalanceId as a Number)
+action InsertBalance Number {
+   initialcheck UserAllowedSite(Contract);
+   parameter PartNo Text;
+   parameter Contract Text;
+   ludependencies = BatchBalance;
+   supportwarnings = [true];
+}
+
+action DisconnectFromBalance {
+   -- Custom initialcheck using a fragment-defined security function
+   initialcheck BatchBalanceNodeInitialCheck(BalanceId, NodeId);
+   parameter BalanceId Number;
+   parameter NodeId Number;
+   supportwarnings = [true];
+   ludependencies = BatchBalance, BatchBalanceNode, BatchBalanceDemandAvailable;
+}
+```
+
+---
+
+## Example — Fragment Action Called from a Dialog
+
+> [!example] Source: `ifs-example/shpord/model/shpord/AddIndirectClockingDialog.fragment`
+
+```plvc
+---------------------------------- ACTIONS ----------------------------------
+
+action AddIndirectClocking {
+   -- UserAllowedSite: standard IFS security check ensuring user has rights to 'Contract' site
+   initialcheck UserAllowedSite(Contract);
+   -- After this action, refresh these two LUs in the client
+   ludependencies = ShopOperClockingUtil, IndirectClocking;
+   parameter Company Text;
+   parameter EmployeeId Text;
+   parameter Contract Text;
+   parameter IndirectJobId Text;
+   parameter StartTime Timestamp;
+   parameter FinishTime Timestamp;
+   parameter WorkCenterNo Text;
+   parameter TeamId Text;
+   parameter CurrentEmployeeId Text;
+   parameter CurrentTeamId Text;
+   parameter ClockingNoteText Text;
+}
+```
+
+In the `.plsvc`, this becomes:
+
+```plsql
+-- Triple underscore = private procedure generated by the framework
+PROCEDURE Add_Indirect_Clocking___(
+   company_             IN VARCHAR2,
+   employee_id_         IN VARCHAR2,
+   contract_            IN VARCHAR2,
+   indirect_job_id_     IN VARCHAR2,
+   start_time_          IN DATE,
+   finish_time_         IN DATE,
+   work_center_no_      IN VARCHAR2,
+   team_id_             IN VARCHAR2,
+   current_employee_id_ IN VARCHAR2,
+   current_team_id_     IN VARCHAR2,
+   clocking_note_text_  IN VARCHAR2 )
+IS
+BEGIN
+   Shop_Oper_Clocking_Util_API.Add_Indirect_Clocking(
+      company_, employee_id_, contract_, indirect_job_id_,
+      start_time_, finish_time_, work_center_no_, team_id_,
+      current_employee_id_, current_team_id_, clocking_note_text_);
+END Add_Indirect_Clocking___;
+```
+
+---
+
+## Example — Inline Action on a Virtual (Dialog OK Button)
+
+```plvc
+virtual AdjustOperationSplitVirtual {
+   ...
+   -- Inline action: scoped to this virtual, called when user clicks OK
+   action AdjustSplitQuantities {
+      supportwarnings = [true];
+      ludependencies = ShopOrd, ShopOrderOperation;
+   }
+}
+```
+
+Called from the client command:
+```plvc
+command Ok for AdjustOperationSplitVirtual {
+   execute {
+      call AdjustSplitQuantities();
+      exit OK;
+   }
+}
+```
+
+---
+
+## Action vs. Function
+
+| Aspect | Action | Function |
+|--------|--------|----------|
+| Purpose | Writes / does something | Reads / computes something |
+| Return value | Optional scalar | Required (Text, Number, Structure, List...) |
+| OData method | `POST` | `GET` (function import) |
+| `initialcheck` | Supported | Not typically used |
+| `ludependencies` | Common | Rare |
+| PL/SQL | `PROCEDURE___` | `FUNCTION___` |
+
+---
+
+## Patterns & Tips
+
+> [!tip] Always Declare `ludependencies` for Multi-Entity Actions
+> If your action writes to more than one LU and both are displayed on screen, list all affected LUs. The client uses this list to know which data panels to refresh. Missing one causes stale data to linger on screen after the action completes.
+
+> [!tip] Use `supportwarnings = [true]` for "Soft Stop" Scenarios
+> When an action might encounter a questionable but non-fatal condition (e.g., "Qty exceeds stock — are you sure?"), use `supportwarnings = [true]`. The PL/SQL can then call `Info_SYS.Add_Warning` and the framework shows a dialog the user can proceed through.
+
+> [!warning] `initialcheck` Is Not Optional for Sensitive Operations
+> Security-critical actions must declare an `initialcheck`. Without it, any authenticated user can call the action via OData — there's no field-level authorization by default. Use `UserAllowedSite(Contract)` for site-restricted operations, and define custom check functions in a fragment for more complex rules.
+
+---
+
+## See Also
+
+- [[Function]] — for read-only server-side operations that return data
+- [[Commands and Expressions]] — the client `call ActionName(...)` syntax
+- [[Virtual]] — inline actions on virtuals for dialog OK patterns
+- [[Entity]] — inline actions scoped to a specific entity
