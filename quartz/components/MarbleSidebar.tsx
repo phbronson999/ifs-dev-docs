@@ -1,5 +1,6 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
+import { resolveRelative, FullSlug } from "../util/path"
 import style from "./styles/marbleSidebar.scss"
 // @ts-ignore
 import script from "./scripts/marblesidebar.inline"
@@ -193,8 +194,12 @@ const MarbleSidebar: QuartzComponent = ({ fileData, displayClass }: QuartzCompon
             <div class="marble-nav-section-label">{section.label}</div>
             {section.standalone?.map((link) => (
               <a
-                class={classNames(undefined, "marble-nav-link-standalone", currentSlug === link.slug && "active")}
-                href={`/${link.slug}`}
+                class={classNames(
+                  undefined,
+                  "marble-nav-link-standalone",
+                  ...(currentSlug === link.slug ? ["active"] : []),
+                )}
+                href={resolveRelative(fileData.slug!, link.slug as FullSlug)}
               >
                 <span style="font-size:13px;">{link.icon}</span> {link.label}
               </a>
@@ -210,8 +215,12 @@ const MarbleSidebar: QuartzComponent = ({ fileData, displayClass }: QuartzCompon
                   <div class="marble-nav-sub">
                     {group.links.map((link) => (
                       <a
-                        class={classNames(undefined, "marble-nav-link", link.slug === currentSlug && "active")}
-                        href={`/${link.slug}`}
+                        class={classNames(
+                          undefined,
+                          "marble-nav-link",
+                          ...(link.slug === currentSlug ? ["active"] : []),
+                        )}
+                        href={resolveRelative(fileData.slug!, link.slug as FullSlug)}
                       >
                         <span class="marble-dot"></span>
                         {link.label}
