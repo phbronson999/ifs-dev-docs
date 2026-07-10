@@ -1,0 +1,231 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Marble (IFS Cloud)",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#section-dividers" },
+    { "include": "#strings" },
+    { "include": "#annotations" },
+    { "include": "#numbers" },
+    { "include": "#keywords-declaration" },
+    { "include": "#keywords-projection" },
+    { "include": "#keywords-attribute-block" },
+    { "include": "#keywords-client" },
+    { "include": "#keywords-base-entity" },
+    { "include": "#keywords-state-machine" },
+    { "include": "#keywords-shared" },
+    { "include": "#constants" },
+    { "include": "#types" },
+    { "include": "#operators" },
+    { "include": "#brackets" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.marble",
+          "begin": "//",
+          "end": "$"
+        },
+        {
+          "name": "comment.line.double-dash.marble",
+          "begin": "(?<![A-Za-z0-9\\-])--",
+          "end": "$"
+        },
+        {
+          "name": "comment.block.marble",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "section-dividers": {
+      "comment": "IFS Developer Studio cosmetic section dividers: ----- SECTION NAME -----",
+      "patterns": [
+        {
+          "name": "comment.line.section-divider.marble",
+          "match": "^\\s*-{10,}[^\\n]*-{10,}\\s*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.marble",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "name": "constant.character.escape.marble", "match": "\\\\." }
+          ]
+        }
+      ]
+    },
+    "annotations": {
+      "comment": "Marble annotations — must come before keyword rules to take priority",
+      "patterns": [
+        {
+          "name": "storage.modifier.annotation.marble",
+          "match": "@Override\\b"
+        },
+        {
+          "name": "storage.modifier.annotation.marble",
+          "match": "@DynamicComponentDependency\\s+[A-Z][A-Z0-9]*"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.marble",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "keywords-declaration": {
+      "comment": "Top-level file type declarations — the first keyword in any Marble file",
+      "patterns": [
+        {
+          "name": "keyword.declaration.marble",
+          "match": "\\b(projection|client|fragment)\\b"
+        }
+      ]
+    },
+    "keywords-projection": {
+      "comment": "Constructs and modifiers valid inside a .projection file",
+      "patterns": [
+        {
+          "name": "keyword.other.construct.projection.marble",
+          "match": "\\b(entityset|entity|query|virtual|structure|action|function|enumeration|value)\\b"
+        },
+        {
+          "name": "keyword.other.modifier.projection.marble",
+          "match": "\\b(crud|from|keys|ludependencies|attribute|reference|array|defaultwhere|initialcheck|supportwarnings|parameter)\\b"
+        },
+        {
+          "name": "keyword.other.modifier.projection.marble",
+          "match": "\\b(include|category)\\b"
+        }
+      ]
+    },
+    "keywords-attribute-block": {
+      "comment": "Sub-keywords inside attribute, reference, and action blocks",
+      "patterns": [
+        {
+          "name": "keyword.other.attribute.marble",
+          "match": "\\b(label|editable|fetch|format|required|maxlength|multiline|where|size)\\b"
+        }
+      ]
+    },
+    "keywords-client": {
+      "comment": "Constructs and modifiers valid inside a .client file",
+      "patterns": [
+        {
+          "name": "keyword.other.construct.client.marble",
+          "match": "\\b(navigator|entry|page|list|group|dialog|assistant|command|lov|field|step)\\b"
+        },
+        {
+          "name": "keyword.other.modifier.client.marble",
+          "match": "\\b(using|orderby|editmode|startupmode|savemode|bind|enabled|mode|input|output)\\b"
+        },
+        {
+          "name": "keyword.other.modifier.client.marble",
+          "match": "\\b(execute|bulkexecute|navigate|bulknavigate|parent|at|index|finish|cancel|dataRow)\\b"
+        }
+      ]
+    },
+    "keywords-base-entity": {
+      "comment": "Constructs valid in .ent / .enum / .util Base Server files",
+      "patterns": [
+        {
+          "name": "keyword.other.base-entity.marble",
+          "match": "\\b(entity|enumeration|utility|attributes|associations|key|public)\\b"
+        }
+      ]
+    },
+    "keywords-state-machine": {
+      "comment": "State machine keywords inside a `states { }` block",
+      "patterns": [
+        {
+          "name": "keyword.control.state.marble",
+          "match": "\\b(startstate|state|endstate|transitionTo|on|always)\\b"
+        }
+      ]
+    },
+    "keywords-shared": {
+      "comment": "Keywords valid in all Marble file types",
+      "patterns": [
+        {
+          "name": "keyword.other.shared.marble",
+          "match": "\\b(component|layer|description|states|fragment)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "comment": "Language constants — layer values, CRUD verbs, size tokens, mode tokens",
+      "patterns": [
+        {
+          "name": "constant.language.layer.marble",
+          "match": "\\b(Core|Cust|Cus[2-9])\\b"
+        },
+        {
+          "name": "constant.language.category.marble",
+          "match": "\\b(Users|Hidden|System)\\b"
+        },
+        {
+          "name": "constant.language.crud.marble",
+          "match": "\\b(Create|Read|Update|Delete)\\b"
+        },
+        {
+          "name": "constant.language.size.marble",
+          "match": "\\b(Small|Medium|Large|FullWidth)\\b"
+        },
+        {
+          "name": "constant.language.mode.marble",
+          "match": "\\b(SingleCellEdit|MultiRowEdit|SelectedRecords|Global|search|Nested|OnFinish|OnLeaveFocus)\\b"
+        }
+      ]
+    },
+    "types": {
+      "comment": "Marble (projection-layer) and Base Server data types",
+      "patterns": [
+        {
+          "name": "storage.type.projection.marble",
+          "match": "\\b(Text|Number|Boolean|Date|Timestamp|LargeText|Binary|Enumeration)\\b"
+        },
+        {
+          "name": "storage.type.base-entity.marble",
+          "match": "\\b(TEXT|NUMBER|DATE|TIME|TIMESTAMP|BOOLEAN|BLOB|CLOB|UUID)\\b"
+        },
+        {
+          "name": "entity.name.type.marble",
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.association.marble",
+          "match": "(/CASCADE|/NOCHECK|/CUSTOM(LIST)?)"
+        },
+        {
+          "name": "keyword.operator.assignment.marble",
+          "match": "(?<![=<>!])=(?!=)"
+        }
+      ]
+    },
+    "brackets": {
+      "patterns": [
+        {
+          "name": "punctuation.section.marble",
+          "match": "[{}\\[\\]()]"
+        },
+        {
+          "name": "punctuation.terminator.marble",
+          "match": "[;,]"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.marble"
+}

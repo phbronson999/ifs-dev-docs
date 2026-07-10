@@ -6,7 +6,7 @@ tags:
 aliases:
   - function definition
   - server function
-  - List<Entity> return
+  - list of entity return
   - alterattribute
 related:
   - "[[Action]]"
