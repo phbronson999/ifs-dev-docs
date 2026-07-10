@@ -1,0 +1,285 @@
+@use "../../styles/variables.scss" as *;
+
+// Quartz's default sidebar top padding ($topSpacing: 6rem) assumes a page-title-first
+// layout; tighten it for our app-shell-style nav that starts right at the toolbar.
+// Applies to both sidebars so the left nav and right Graph/TOC/Backlinks column align.
+.sidebar.left,
+.sidebar.right {
+  padding-top: 1.5rem !important;
+}
+
+// Same tightening for the main content column (breadcrumbs/title/meta), so it
+// aligns with the sidebars instead of starting 6rem down. Desktop/tablet only —
+// mobile's flush margin-top:0 is intentional and left as-is. Extra top padding
+// reserves room for the fixed breadcrumb bar (see below) so ArticleTitle
+// doesn't render underneath it.
+$crumbBarHeight: 4rem;
+
+.page-header {
+  @media all and not ($mobile) {
+    margin-top: 0 !important;
+    padding-top: $crumbBarHeight;
+  }
+}
+
+// Keep breadcrumbs visible for the whole scroll, not just while .page-header's
+// own (short) box is in view. position:fixed removes it from the grid, so
+// left/width are set to match .center's real bounds via marblesidebar.inline.ts.
+// Covers the full top strip (not just its own text row) so scrolled article
+// content can never peek out above it, fading to transparent at its bottom
+// edge so content disappearing underneath it looks intentional, not clipped.
+.page-header .breadcrumb-container {
+  position: fixed;
+  top: 0;
+  height: $crumbBarHeight;
+  z-index: 10;
+  background: linear-gradient(to bottom, var(--light) 0%, var(--light) 60%, transparent 100%);
+  padding: 1rem 0 0;
+  margin-top: 0;
+  box-sizing: border-box;
+
+  @media all and ($mobile) {
+    position: static;
+    height: auto;
+    background: none;
+    padding: 0;
+  }
+}
+
+// Left nav: our MarbleSidebar owns a single internal scroll region
+// (.marble-sidebar-nav), so the chain just needs to allow it to shrink.
+.sidebar.left {
+  min-height: 0;
+
+  & > * {
+    min-height: 0;
+  }
+}
+
+// Right column (Graph/TOC/Backlinks): these built-in Quartz components have
+// their own internal max-height/scroll assumptions that break if forced to
+// shrink via min-height:0. Simpler and more robust to let the whole column
+// scroll as one unit at natural height instead of fighting over shared space.
+.sidebar.right {
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+  & > * {
+    flex-shrink: 0;
+  }
+
+  // Both TOC and Backlinks render their list through Quartz's shared
+  // OverflowList wrapper, which always adds an "overflow" class carrying
+  // max-height + overscroll-behavior:contain — meant for an independent
+  // internal scroll region. With `contain`, once that inner list hits its
+  // own (tiny) scroll boundary it refuses to hand the wheel event up to the
+  // column, which is exactly what "won't scroll over text" was. Since the
+  // whole right column scrolls as one unit now, neither list needs its own
+  // scroll boundary — let them render at full natural height instead.
+  //
+  // Note: .toc itself keeps its default overflow-y:hidden — that's what
+  // makes the collapse toggle actually hide the list (it works by shrinking
+  // .toc's flex-basis to 1.4rem and relying on overflow-y:hidden to clip the
+  // now-oversized content). Only the inner list's own scroll trap is removed.
+  ul.toc-content.overflow,
+  .backlinks > ul.overflow {
+    max-height: none !important;
+    overscroll-behavior: auto !important;
+  }
+}
+
+.marble-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 auto;
+  font-family: var(--bodyFont);
+
+  #marble-menu-btn {
+    display: none;
+  }
+
+  .marble-sidebar-brand {
+    padding: 0 0 14px;
+    border-bottom: 1px solid var(--lightgray);
+    flex-shrink: 0;
+  }
+  .marble-sidebar-brand-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+  }
+  .marble-sidebar-brand-sub {
+    font-size: 11px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  .marble-sidebar-nav {
+    padding: 10px 0 24px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    scrollbar-width: thin;
+  }
+
+  .marble-nav-section {
+    margin-bottom: 6px;
+  }
+  .marble-nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 8px 4px 3px;
+  }
+
+  .marble-nav-group {
+    border: none;
+
+    > summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      padding: 5px 4px;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--darkgray);
+      cursor: pointer;
+      user-select: none;
+      border-radius: 4px;
+
+      &::-webkit-details-marker,
+      &::marker {
+        display: none;
+      }
+      &:hover {
+        background: var(--highlight);
+      }
+      .marble-chevron {
+        margin-left: auto;
+        font-size: 9px;
+        opacity: 0.4;
+        transition: transform 0.18s ease;
+      }
+    }
+    &[open] > summary .marble-chevron {
+      transform: rotate(90deg);
+    }
+  }
+
+  .marble-nav-sub {
+    padding: 1px 0 4px 18px;
+  }
+
+  .marble-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--gray);
+    transition: background 0.12s, color 0.12s;
+
+    &:hover {
+      background: var(--highlight);
+      color: var(--darkgray);
+    }
+    &.active {
+      background: var(--highlight);
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    .marble-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.35;
+      flex-shrink: 0;
+    }
+  }
+
+  // Accent hover per section, matching Common Patterns.html
+  .marble-nav-section.learn .marble-nav-link:hover,
+  .marble-nav-section.learn .marble-nav-link.active {
+    color: #d2a8ff;
+  }
+  .marble-nav-section.client .marble-nav-link:hover,
+  .marble-nav-section.client .marble-nav-link.active {
+    color: #79c0ff;
+  }
+  .marble-nav-section.proj .marble-nav-link:hover,
+  .marble-nav-section.proj .marble-nav-link.active {
+    color: #56d364;
+  }
+  .marble-nav-section.base .marble-nav-link:hover,
+  .marble-nav-section.base .marble-nav-link.active {
+    color: #ffa657;
+  }
+
+  .marble-nav-link-standalone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 4px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--darkgray);
+    border-radius: 4px;
+    transition: background 0.12s;
+
+    &:hover {
+      background: var(--highlight);
+    }
+    &.active {
+      background: var(--highlight);
+      color: var(--secondary);
+    }
+  }
+}
+
+@media all and ($mobile) {
+  .marble-sidebar {
+    #marble-menu-btn {
+      display: flex;
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 300;
+      width: 36px;
+      height: 36px;
+      background: var(--light);
+      border: 1px solid var(--lightgray);
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--darkgray);
+      font-size: 16px;
+    }
+
+    .marble-sidebar-brand,
+    .marble-sidebar-nav {
+      display: none;
+    }
+
+    &.open {
+      position: fixed;
+      inset: 0;
+      z-index: 250;
+      background: var(--light);
+      padding: 70px 20px 20px;
+      overflow-y: auto;
+
+      .marble-sidebar-brand,
+      .marble-sidebar-nav {
+        display: block;
+      }
+    }
+  }
+}

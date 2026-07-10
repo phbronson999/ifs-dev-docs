@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IFS Cust Developer Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --sidebar-w: 256px;
+      --sidebar-bg: #0d1117;
+      --sidebar-border: rgba(255,255,255,0.06);
+      --sidebar-text: #8b949e;
+      --sidebar-text-bright: #cdd9e5;
+      --sidebar-hover: rgba(255,255,255,0.05);
+      --sidebar-section-label: #484f58;
+
+      --bg: #0d1117;
+      --card: #161b22;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --border-light: #21262d;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+      --shadow-md: 0 3px 8px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
+
+      --learn:        #a371f7;
+      --learn-bg:     #1e1030;
+      --learn-border: #6e40c9;
+      --client:       #58a6ff;
+      --client-bg:    #051d4d;
+      --client-border: #1f6feb;
+      --proj:         #3fb950;
+      --proj-bg:      #0f2d11;
+      --proj-border:  #238636;
+      --base:         #f0883e;
+      --base-bg:      #341a00;
+      --base-border:  #9e6a03;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── LAYOUT ─────────────────────────────────────────────── */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────────────── */
+    #sidebar {
+      width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 200;
+      scrollbar-width: thin;
+      scrollbar-color: #30363d transparent;
+    }
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-track { background: transparent; }
+    #sidebar::-webkit-scrollbar-thumb { background: #30363d; border-radius: 2px; }
+
+    .sidebar-brand {
+      padding: 18px 16px 14px;
+      border-bottom: 1px solid var(--sidebar-border);
+      flex-shrink: 0;
+    }
+    .sidebar-brand-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e6edf3;
+      letter-spacing: -0.01em;
+    }
+    .sidebar-brand-sub {
+      font-size: 11px;
+      color: var(--sidebar-text);
+      margin-top: 2px;
+    }
+
+    .sidebar-nav { padding: 10px 0 24px; }
+
+    .nav-section { margin-bottom: 6px; }
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sidebar-section-label);
+      padding: 8px 16px 3px;
+    }
+
+    /* Accordion groups */
+    .nav-group { border: none; }
+    .nav-group > summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      padding: 5px 16px;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--sidebar-text-bright);
+      cursor: pointer;
+      user-select: none;
+      border-radius: 0;
+    }
+    .nav-group > summary::-webkit-details-marker,
+    .nav-group > summary::marker { display: none; }
+    .nav-group > summary:hover { background: var(--sidebar-hover); }
+    .nav-group > summary .chevron {
+      margin-left: auto;
+      font-size: 9px;
+      opacity: 0.4;
+      transition: transform 0.18s ease;
+    }
+    .nav-group[open] > summary .chevron { transform: rotate(90deg); }
+
+    /* Sub-items */
+    .nav-sub { padding: 1px 0 4px 28px; }
+    .nav-sub-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #484f58;
+      padding: 5px 10px 2px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: var(--sidebar-text);
+      transition: background 0.12s, color 0.12s;
+    }
+    .nav-link:hover { background: var(--sidebar-hover); color: var(--sidebar-text-bright); }
+    .nav-link .dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.35;
+      flex-shrink: 0;
+    }
+
+    /* Accent stripe on grouped sections */
+    .nav-section.learn  .nav-link:hover { color: #d2a8ff; }
+    .nav-section.client .nav-link:hover { color: #79c0ff; }
+    .nav-section.proj   .nav-link:hover { color: #56d364; }
+    .nav-section.base   .nav-link:hover { color: #ffa657; }
+
+    /* Standalone link (no group) */
+    .nav-link-standalone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--sidebar-text-bright);
+      transition: background 0.12s;
+    }
+    .nav-link-standalone:hover { background: var(--sidebar-hover); }
+
+    /* ── MAIN ────────────────────────────────────────────────── */
+    #main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 52px 60px 100px;
+      min-width: 0;
+      max-width: calc(var(--sidebar-w) + 920px);
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      margin-bottom: 52px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--client-bg);
+      color: var(--client);
+      border: 1px solid var(--client-border);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .hero-stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+      margin: 4px 0;
+    }
+
+    /* ── SECTION HEADERS ─────────────────────────────────────── */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      margin-top: 52px;
+    }
+    .sec-head h2 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .pill {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+      border: 1px solid;
+    }
+    .pill-learn  { background: var(--learn-bg);  color: var(--learn);  border-color: var(--learn-border); }
+    .pill-client { background: var(--client-bg); color: var(--client); border-color: var(--client-border); }
+    .pill-proj   { background: var(--proj-bg);   color: var(--proj);   border-color: var(--proj-border); }
+    .pill-base   { background: var(--base-bg);   color: var(--base);   border-color: var(--base-border); }
+
+    .sec-rule { flex: 1; height: 1px; background: var(--border-light); }
+
+    /* ── STEP CARDS (Start Here) ─────────────────────────────── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+    }
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.13s;
+      cursor: pointer;
+    }
+    .step-card:hover {
+      border-color: var(--learn-border);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .step-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+      background: var(--learn);
+    }
+    .step-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .step-desc  { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── SECTION PANEL ───────────────────────────────────────── */
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 26px;
+      margin-bottom: 16px;
+    }
+    .panel-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .panel-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .panel-head-text h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .panel-head-text p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .panel-head-action { margin-left: auto; flex-shrink: 0; }
+
+    /* ── SUB-GROUPS INSIDE PANEL ─────────────────────────────── */
+    .sub-group { margin-bottom: 18px; }
+    .sub-group:last-child { margin-bottom: 0; }
+    .sub-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-label::after { content: ''; flex: 1; height: 1px; background: var(--border-light); }
+
+    /* ── CHIPS ───────────────────────────────────────────────── */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 11px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.13s;
+      white-space: nowrap;
+    }
+    .chip-client:hover { background: var(--client-bg); border-color: var(--client-border); color: var(--client); }
+    .chip-proj:hover   { background: var(--proj-bg);   border-color: var(--proj-border);   color: var(--proj);   }
+    .chip-base:hover   { background: var(--base-bg);   border-color: var(--base-border);   color: var(--base);   }
+    .chip-learn:hover  { background: var(--learn-bg);  border-color: var(--learn-border);  color: var(--learn);  }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    .footer {
+      margin-top: 72px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-note { font-size: 11.5px; color: var(--text-muted); }
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 10.5px;
+      background: #21262d;
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #e6edf3;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      #main { margin-left: 0; padding: 28px 20px 60px; }
+      #sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+      }
+      #sidebar.open { transform: translateX(0); }
+      #menu-btn {
+        display: flex;
+        position: fixed;
+        top: 14px; left: 14px;
+        z-index: 300;
+        width: 36px; height: 36px;
+        background: var(--sidebar-bg);
+        border: none;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #cdd9e5;
+        font-size: 16px;
+      }
+    }
+    @media (min-width: 861px) { #menu-btn { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- Mobile menu button -->
+<button id="menu-btn" aria-label="Toggle navigation" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<!-- ══════════════════ SIDEBAR ══════════════════ -->
+<nav id="sidebar" aria-label="Vault navigation">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-name">IFS Cust Developer Docs</div>
+    <div class="sidebar-brand-sub">IFS Cust Layer Development Language Reference</div>
+  </div>
+
+  <div class="sidebar-nav">
+
+    <!-- ── START HERE ── -->
+    <div class="nav-section learn">
+      <div class="nav-section-label">Start Here</div>
+      <a class="nav-link-standalone" href="/Marble-Language-Reference/Thinking-in-Marble">
+        <span style="font-size:13px;">🧠</span> Thinking in Marble
+      </a>
+      <a class="nav-link-standalone" href="/Marble-Language-Reference/Glossary">
+        <span style="font-size:13px;">📖</span> Glossary
+      </a>
+      <details class="nav-group" open>
+        <summary><span style="font-size:11px;">📚</span> Learn Path <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Learn/Build-Your-First-Screen"><span class="dot"></span>Build Your First Screen</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Learn/Common-Patterns"><span class="dot"></span>Common Patterns</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- ── CLIENT LAYER ── -->
+    <div class="nav-section client">
+      <div class="nav-section-label">Client Layer</div>
+      <a class="nav-link-standalone" href="/Marble-Language-Reference/Client/Property-Index">
+        <span style="font-size:11px;">📋</span> Property Index
+      </a>
+      <details class="nav-group" open>
+        <summary><span style="font-size:11px;">📂</span> Overview <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Overview/Client-File-Structure"><span class="dot"></span>Client File Structure</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Overview/Fragment"><span class="dot"></span>Fragment</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Overview/Declaration-Order-Rules"><span class="dot"></span>Declaration Order Rules</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">🖥</span> Screens <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Screens/Pages"><span class="dot"></span>Pages</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Screens/Dialog"><span class="dot"></span>Dialog</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Screens/Assistant"><span class="dot"></span>Assistant</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Screens/Navigator"><span class="dot"></span>Navigator</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">⬜</span> Layout <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Layout/List"><span class="dot"></span>List</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Layout/Group"><span class="dot"></span>Group</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Layout/Layout-Controls"><span class="dot"></span>Layout Controls</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Layout/Card-and-Sheet"><span class="dot"></span>Card and Sheet</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">🧩</span> Controls <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Fields-and-LOV"><span class="dot"></span>Fields and LOV</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Advanced-Controls"><span class="dot"></span>Advanced Controls</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Display-Controls"><span class="dot"></span>Display Controls</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Input-Controls"><span class="dot"></span>Input Controls</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Charts"><span class="dot"></span>Charts</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Data-Views"><span class="dot"></span>Data Views</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Controls/Utility-Controls"><span class="dot"></span>Utility Controls</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">💡</span> Concepts <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Concepts/Commands-and-Expressions"><span class="dot"></span>Commands and Expressions</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Concepts/Emphasis-and-Colors"><span class="dot"></span>Emphasis and Colors</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Client/Concepts/Selector-and-Search-Context"><span class="dot"></span>Selector and Search Context</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- ── PROJECTION LAYER ── -->
+    <div class="nav-section proj">
+      <div class="nav-section-label">Projection Layer</div>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">📄</span> Overview <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Overview/Projection-File-Structure"><span class="dot"></span>Projection File Structure</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">🗄</span> Entities <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Entities/Entity"><span class="dot"></span>Entity</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Entities/Entityset"><span class="dot"></span>Entityset</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Entities/Virtual"><span class="dot"></span>Virtual</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Entities/Query"><span class="dot"></span>Query</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Entities/Structure"><span class="dot"></span>Structure</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">🏷</span> Attributes <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Attributes/Enumeration"><span class="dot"></span>Enumeration</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Attributes/References-and-Arrays"><span class="dot"></span>References and Arrays</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Attributes/Attribute-Modifiers"><span class="dot"></span>Attribute Modifiers</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">⚡</span> Operations <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Operations/Action"><span class="dot"></span>Action</a>
+          <a class="nav-link" href="/Marble-Language-Reference/Projection/Operations/Function"><span class="dot"></span>Function</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- ── BASE SERVER ── -->
+    <div class="nav-section base">
+      <div class="nav-section-label">Base Server</div>
+      <a class="nav-link-standalone" href="/Base-Server-Reference/README">
+        <span style="font-size:11px;">📑</span> README
+      </a>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">🔷</span> Constructs <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Base-Server-Reference/Constructs/Entity-(Base-Server)"><span class="dot"></span>Entity</a>
+          <a class="nav-link" href="/Base-Server-Reference/Constructs/Enumeration-(Base-Server)"><span class="dot"></span>Enumeration</a>
+          <a class="nav-link" href="/Base-Server-Reference/Constructs/Utility-(Base-Server)"><span class="dot"></span>Utility</a>
+          <a class="nav-link" href="/Base-Server-Reference/Constructs/Overview-Diagram"><span class="dot"></span>Overview Diagram</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary><span style="font-size:11px;">🔖</span> Metadata <span class="chevron">▶</span></summary>
+        <div class="nav-sub">
+          <a class="nav-link" href="/Base-Server-Reference/Metadata/Attribute-Control-Flags"><span class="dot"></span>Attribute Control Flags</a>
+          <a class="nav-link" href="/Base-Server-Reference/Metadata/PL-SQL-Annotations"><span class="dot"></span>PL/SQL Annotations</a>
+          <a class="nav-link" href="/Base-Server-Reference/Metadata/Declaration-Order-Rules"><span class="dot"></span>Declaration Order Rules</a>
+        </div>
+      </details>
+    </div>
+
+  </div><!-- /sidebar-nav -->
+</nav>
+
+
+<!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+<main id="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">IFS Cloud Development</div>
+    <h1>IFS Cust<br>Developer Docs</h1>
+    <p>A developer reference for the Marble/PLVC declarative language. Use the sidebar to jump to any note, or follow the learning path below if you're new to Marble.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">46</span>
+        <span class="hero-stat-label">Client controls</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">~95</span>
+        <span class="hero-stat-label">Indexed properties</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">18</span>
+        <span class="hero-stat-label">Common patterns</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">Stack layers</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── START HERE ── -->
+  <div class="sec-head">
+    <h2 style="color: var(--learn);">Start Here</h2>
+    <span class="pill pill-learn">Learning path · 4 stops</span>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="steps-grid">
+    <a class="step-card" href="/Marble-Language-Reference/Thinking-in-Marble">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Thinking in Marble</div>
+        <div class="step-desc">The 4-layer stack, 3 rules, and how all files connect</div>
+      </div>
+    </a>
+    <a class="step-card" href="/Marble-Language-Reference/Glossary">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Glossary</div>
+        <div class="step-desc">Every term defined with React, SQL &amp; REST equivalents</div>
+      </div>
+    </a>
+    <a class="step-card" href="/Marble-Language-Reference/Learn/Build-Your-First-Screen">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Build Your First Screen</div>
+        <div class="step-desc">10-step tutorial — projection, fragment, client, command</div>
+      </div>
+    </a>
+    <a class="step-card" href="/Marble-Language-Reference/Learn/Common-Patterns">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">Common Patterns</div>
+        <div class="step-desc">18 recipes for the scenarios in every screen</div>
+      </div>
+    </a>
+  </div>
+
+
+  <!-- ── CLIENT LAYER ── -->
+  <div class="sec-head">
+    <h2 style="color: var(--client);">Client Layer</h2>
+    <span class="pill pill-client">.client &amp; .fragment</span>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="panel" style="border-left: 3px solid var(--client);">
+    <div class="panel-head">
+      <div class="panel-icon" style="background: var(--client-bg); color: var(--client);">⬡</div>
+      <div class="panel-head-text">
+        <h3>Marble Language Reference / Client</h3>
+        <p>Screens, layout containers, controls, and cross-cutting behavior — everything you write in <code>.client</code> files</p>
+      </div>
+      <div class="panel-head-action">
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Property-Index">📋 Property Index</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Overview — file format &amp; structure</div>
+      <div class="chips">
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Overview/Client-File-Structure">Client File Structure</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Overview/Fragment">Fragment</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Overview/Declaration-Order-Rules">Declaration Order Rules</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Screens — top-level screen containers</div>
+      <div class="chips">
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Screens/Pages">Pages</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Screens/Dialog">Dialog</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Screens/Assistant">Assistant</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Screens/Navigator">Navigator</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Layout — organizing content within a screen</div>
+      <div class="chips">
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Layout/List">List</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Layout/Group">Group</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Layout/Layout-Controls">Layout Controls</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Layout/Card-and-Sheet">Card and Sheet</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Controls — individual display and input components</div>
+      <div class="chips">
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Fields-and-LOV">Fields and LOV</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Advanced-Controls">Advanced Controls</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Display-Controls">Display Controls</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Input-Controls">Input Controls</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Charts">Charts</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Data-Views">Data Views</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Controls/Utility-Controls">Utility Controls</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Concepts — cross-cutting behavior &amp; styling</div>
+      <div class="chips">
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Concepts/Commands-and-Expressions">Commands and Expressions</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Concepts/Emphasis-and-Colors">Emphasis and Colors</a>
+        <a class="chip chip-client" href="/Marble-Language-Reference/Client/Concepts/Selector-and-Search-Context">Selector and Search Context</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── PROJECTION LAYER ── -->
+  <div class="sec-head">
+    <h2 style="color: var(--proj);">Projection Layer</h2>
+    <span class="pill pill-proj">.projection &amp; .fragment</span>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="panel" style="border-left: 3px solid var(--proj);">
+    <div class="panel-head">
+      <div class="panel-icon" style="background: var(--proj-bg); color: var(--proj);">⬡</div>
+      <div class="panel-head-text">
+        <h3>Marble Language Reference / Projection</h3>
+        <p>The data contract the client consumes — entities, entitysets, references, actions, and functions in <code>.projection</code> files</p>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Overview</div>
+      <div class="chips">
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Overview/Projection-File-Structure">Projection File Structure</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Entities — data shapes and query endpoints</div>
+      <div class="chips">
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Entities/Entity">Entity</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Entities/Entityset">Entityset</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Entities/Virtual">Virtual</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Entities/Query">Query</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Entities/Structure">Structure</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Attributes — types, relationships, and modifiers</div>
+      <div class="chips">
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Attributes/Enumeration">Enumeration</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Attributes/References-and-Arrays">References and Arrays</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Attributes/Attribute-Modifiers">Attribute Modifiers</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Operations — server-callable procedures and reads</div>
+      <div class="chips">
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Operations/Action">Action</a>
+        <a class="chip chip-proj" href="/Marble-Language-Reference/Projection/Operations/Function">Function</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── BASE SERVER ── -->
+  <div class="sec-head">
+    <h2 style="color: var(--base);">Base Server Layer</h2>
+    <span class="pill pill-base">.entity &amp; .plsql foundation</span>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="panel" style="border-left: 3px solid var(--base);">
+    <div class="panel-head">
+      <div class="panel-icon" style="background: var(--base-bg); color: var(--base);">⬡</div>
+      <div class="panel-head-text">
+        <h3>Base Server Reference</h3>
+        <p>The PL/SQL and entity-model foundation that projections build on — Logical Units, enumerations, utilities, and annotations</p>
+      </div>
+      <div class="panel-head-action">
+        <a class="chip chip-base" href="/Base-Server-Reference/README">📑 README</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Constructs — the three core model types</div>
+      <div class="chips">
+        <a class="chip chip-base" href="/Base-Server-Reference/Constructs/Entity-(Base-Server)">Entity (Base Server)</a>
+        <a class="chip chip-base" href="/Base-Server-Reference/Constructs/Enumeration-(Base-Server)">Enumeration (Base Server)</a>
+        <a class="chip chip-base" href="/Base-Server-Reference/Constructs/Utility-(Base-Server)">Utility (Base Server)</a>
+        <a class="chip chip-base" href="/Base-Server-Reference/Constructs/Overview-Diagram">Overview Diagram</a>
+      </div>
+    </div>
+
+    <div class="sub-group">
+      <div class="sub-label">Metadata — annotations, flags, ordering rules</div>
+      <div class="chips">
+        <a class="chip chip-base" href="/Base-Server-Reference/Metadata/Attribute-Control-Flags">Attribute Control Flags</a>
+        <a class="chip chip-base" href="/Base-Server-Reference/Metadata/PL-SQL-Annotations">PL/SQL Annotations</a>
+        <a class="chip chip-base" href="/Base-Server-Reference/Metadata/Declaration-Order-Rules">Declaration Order Rules</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-note">
+      IFS Cust Developer Docs
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // Close mobile sidebar when a link is clicked
+  document.querySelectorAll('#sidebar a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('open');
+    });
+  });
+
+  // Highlight the active nav link briefly on click to give feedback
+  document.querySelectorAll('.nav-link, .nav-link-standalone').forEach(link => {
+    link.addEventListener('click', function () {
+      document.querySelectorAll('.nav-link, .nav-link-standalone').forEach(l =>
+        l.style.removeProperty('color'));
+      this.style.color = '#79c0ff';
+      setTimeout(() => this.style.removeProperty('color'), 1200);
+    });
+  });
+</script>
+</body>
+</html>

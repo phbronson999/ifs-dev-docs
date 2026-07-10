@@ -23,8 +23,10 @@ import Breadcrumbs from "./Breadcrumbs"
 import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
+import MarbleSidebar from "./MarbleSidebar"
 
 export {
+  MarbleSidebar,
   ArticleTitle,
   Content,
   TagContent,

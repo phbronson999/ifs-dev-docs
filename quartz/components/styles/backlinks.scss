@@ -1,11 +1,13 @@
 @use "../../styles/variables.scss" as *;
 
 .backlinks {
+  display: flex;
   flex-direction: column;
-
-  & > h3 {
-    font-size: 1rem;
-    margin: 0;
+  overflow-y: hidden;
+  min-height: 1.4rem;
+  flex: 0 0.5 auto;
+  &:has(button.backlinks-header.collapsed) {
+    flex: 0 1 1.4rem;
   }
 
   & > ul.overflow {
@@ -20,5 +22,32 @@
         background-color: transparent;
       }
     }
+  }
+}
+
+button.backlinks-header {
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+
+  & h3 {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0;
+  }
+
+  & .fold {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+  }
+
+  &.collapsed .fold {
+    transform: rotateZ(-90deg);
   }
 }
