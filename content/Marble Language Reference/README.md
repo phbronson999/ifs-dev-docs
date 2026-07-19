@@ -1,5 +1,6 @@
 ---
 title: IFS Marble Language Reference
+publish: true
 tags:
   - ifs-marble
   - index
@@ -145,3 +146,11 @@ The Marble/projection layer sits on top of the Base Server layer. See the [[Base
 - [[Utility (Base Server)]] — stateless PL/SQL utility packages
 - [[Overview Diagram]] — the visual entity relationship diagram (`.overview` files)
 - [[PL-SQL Annotations]] — @Override, @Final, @SecurityCheck etc.
+
+---
+
+## Deployment and Installation Layer
+
+Every component documented above — Base Server or Marble/projection — ships with a `deploy.ini` profile that governs how it's packaged, versioned, and upgraded. See the [[Deployment and Installation Reference/README|Deployment and Installation Reference]]:
+
+- [[Component Deployment Profile File]] — `deploy.ini` sections, syntax, and version/upgrade chains

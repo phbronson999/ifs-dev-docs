@@ -1,5 +1,6 @@
 ---
 title: Business Object Model
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/confirmed
@@ -8,7 +9,7 @@ aliases:
   - .bo
   - businessobject
 related:
-  - "[[IFS Base Server Reference]]"
+  - '[[IFS Base Server Reference]]'
 ---
 
 # Business Object Model

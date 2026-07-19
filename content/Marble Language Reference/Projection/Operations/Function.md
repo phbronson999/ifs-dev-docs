@@ -1,18 +1,19 @@
 ---
 title: Function
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
 aliases:
   - function definition
   - server function
-  - list of entity return
+  - List<Entity> return
   - alterattribute
 related:
-  - "[[Action]]"
-  - "[[Structure]]"
-  - "[[Commands and Expressions]]"
-  - "[[Entity]]"
+  - '[[Action]]'
+  - '[[Structure]]'
+  - '[[Commands and Expressions]]'
+  - '[[Entity]]'
 ---
 
 # Function

@@ -1,12 +1,13 @@
 ---
 title: Parquet Data Source
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
 aliases:
   - parquetdatasource
 related:
-  - "[[Analysis Data Source]]"
+  - '[[Analysis Data Source]]'
 ---
 
 # Parquet Data Source

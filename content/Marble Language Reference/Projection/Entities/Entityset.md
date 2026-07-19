@@ -1,5 +1,6 @@
 ---
 title: Entityset
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -8,11 +9,11 @@ aliases:
   - entityset declaration
   - defaultwhere
 related:
-  - "[[Entity]]"
-  - "[[Query]]"
-  - "[[Virtual]]"
-  - "[[Projection File Structure]]"
-  - "[[Pages]]"
+  - '[[Entity]]'
+  - '[[Query]]'
+  - '[[Virtual]]'
+  - '[[Projection File Structure]]'
+  - '[[Pages]]'
 ---
 
 # Entityset

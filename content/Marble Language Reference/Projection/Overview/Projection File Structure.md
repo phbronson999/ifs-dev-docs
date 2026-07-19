@@ -1,5 +1,6 @@
 ---
 title: Projection File Structure
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/file-structure
@@ -7,12 +8,12 @@ aliases:
   - projection header
   - projection declaration
 related:
-  - "[[Entityset]]"
-  - "[[Entity]]"
-  - "[[Query]]"
-  - "[[Action]]"
-  - "[[Function]]"
-  - "[[Client File Structure]]"
+  - '[[Entityset]]'
+  - '[[Entity]]'
+  - '[[Query]]'
+  - '[[Action]]'
+  - '[[Function]]'
+  - '[[Client File Structure]]'
 ---
 
 # Projection File Structure

@@ -1,5 +1,6 @@
 ---
 title: Commands and Expressions
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -24,12 +25,12 @@ aliases:
   - server expression
   - command clone
 related:
-  - "[[Action]]"
-  - "[[Function]]"
-  - "[[List]]"
-  - "[[Group]]"
-  - "[[Dialog]]"
-  - "[[Assistant]]"
+  - '[[Action]]'
+  - '[[Function]]'
+  - '[[List]]'
+  - '[[Group]]'
+  - '[[Dialog]]'
+  - '[[Assistant]]'
 ---
 
 # Commands and Expressions

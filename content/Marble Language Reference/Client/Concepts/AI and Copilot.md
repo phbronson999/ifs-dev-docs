@@ -1,5 +1,6 @@
 ---
 title: AI and Copilot
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/concept
@@ -11,8 +12,8 @@ aliases:
   - smart command
   - smartinputs
 related:
-  - "[[Commands and Expressions]]"
-  - "[[Pages]]"
+  - '[[Commands and Expressions]]'
+  - '[[Pages]]'
 ---
 
 # AI and Copilot

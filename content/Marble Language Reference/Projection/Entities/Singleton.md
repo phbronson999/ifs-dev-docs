@@ -1,5 +1,6 @@
 ---
 title: Singleton
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -8,10 +9,10 @@ aliases:
   - SingletonSetDefinition
   - single-record datasource
 related:
-  - "[[Query]]"
-  - "[[Entity]]"
-  - "[[Entityset]]"
-  - "[[../../Client/Layout/Singleton|Singleton (Client)]]"
+  - '[[Query]]'
+  - '[[Entity]]'
+  - '[[Entityset]]'
+  - '[[../../Client/Layout/Singleton|Singleton (Client)]]'
 ---
 
 # Singleton

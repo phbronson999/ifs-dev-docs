@@ -1,5 +1,6 @@
 ---
 title: Display Controls
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -17,10 +18,10 @@ aliases:
   - progress field
   - progressfield
 related:
-  - "[[Emphasis and Colors]]"
-  - "[[Fields and LOV]]"
-  - "[[List]]"
-  - "[[Group]]"
+  - '[[Emphasis and Colors]]'
+  - '[[Fields and LOV]]'
+  - '[[List]]'
+  - '[[Group]]'
 ---
 
 # Display Controls

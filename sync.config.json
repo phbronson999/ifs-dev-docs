@@ -1,0 +1,10 @@
+{
+  "vaultPath": "../TiCloudTechDocs/IFS-Tech-Docs",
+  "include": [
+    "Marble Language Reference",
+    "Base Server Reference",
+    "Analytics Reference",
+    "Other Model Types Reference",
+    "Deployment and Installation Reference"
+  ]
+}

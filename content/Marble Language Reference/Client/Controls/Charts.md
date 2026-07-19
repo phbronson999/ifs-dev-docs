@@ -1,5 +1,6 @@
 ---
 title: Charts
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -19,10 +20,10 @@ aliases:
   - colorpalette
   - constantline
 related:
-  - "[[Emphasis and Colors]]"
-  - "[[List]]"
-  - "[[Pages]]"
-  - "[[Data Views]]"
+  - '[[Emphasis and Colors]]'
+  - '[[List]]'
+  - '[[Pages]]'
+  - '[[Data Views]]'
 ---
 
 # Charts

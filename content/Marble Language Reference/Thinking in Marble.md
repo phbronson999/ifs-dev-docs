@@ -1,5 +1,6 @@
 ---
 title: Thinking in Marble
+publish: true
 tags:
   - ifs-marble
   - ifs-marble/guide
@@ -9,10 +10,10 @@ aliases:
   - IFS development model
   - start here
 related:
-  - "[[Glossary]]"
-  - "[[Client File Structure]]"
-  - "[[Projection File Structure]]"
-  - "[[Fragment]]"
+  - '[[Glossary]]'
+  - '[[Client File Structure]]'
+  - '[[Projection File Structure]]'
+  - '[[Fragment]]'
 ---
 
 # Thinking in Marble

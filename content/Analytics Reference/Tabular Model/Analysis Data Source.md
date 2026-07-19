@@ -1,5 +1,6 @@
 ---
 title: Analysis Data Source
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
@@ -7,8 +8,8 @@ aliases:
   - analysisdatasource
   - tmdatasource
 related:
-  - "[[Analysis Model]]"
-  - "[[Parquet Data Source]]"
+  - '[[Analysis Model]]'
+  - '[[Parquet Data Source]]'
 ---
 
 # Analysis Data Source

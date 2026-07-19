@@ -1,5 +1,6 @@
 ---
 title: Client File Structure
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/file-structure
@@ -8,10 +9,10 @@ aliases:
   - client declaration
   - .client file
 related:
-  - "[[Projection File Structure]]"
-  - "[[Navigator]]"
-  - "[[Pages]]"
-  - "[[Fragment]]"
+  - '[[Projection File Structure]]'
+  - '[[Navigator]]'
+  - '[[Pages]]'
+  - '[[Fragment]]'
 ---
 
 # Client File Structure

@@ -1,5 +1,6 @@
 ---
 title: Emphasis and Colors
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/concept
@@ -11,9 +12,9 @@ aliases:
   - Complementary
   - StateOpen
 related:
-  - "[[Display Controls]]"
-  - "[[List]]"
-  - "[[Charts]]"
+  - '[[Display Controls]]'
+  - '[[List]]'
+  - '[[Charts]]'
 ---
 
 # Emphasis and Colors

@@ -1,14 +1,15 @@
 ---
 title: Filter Model
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
 aliases:
   - filtermodel
 related:
-  - "[[Analysis Data Source]]"
-  - "[[Fact Model]]"
-  - "[[Dimension Model]]"
+  - '[[Analysis Data Source]]'
+  - '[[Fact Model]]'
+  - '[[Dimension Model]]'
 ---
 
 # Filter Model

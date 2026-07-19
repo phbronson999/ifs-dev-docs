@@ -1,5 +1,6 @@
 ---
 title: Utility (Base Server)
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/model
@@ -8,8 +9,8 @@ aliases:
   - utility logical unit
   - utilityname
 related:
-  - "[[Entity (Base Server)]]"
-  - "[[Overview Diagram]]"
+  - '[[Entity (Base Server)]]'
+  - '[[Overview Diagram]]'
 ---
 
 # Utility (Base Server)

@@ -1,5 +1,6 @@
 ---
 title: IFS Base Server Reference
+publish: true
 tags:
   - ifs-base-server
   - index
@@ -7,7 +8,7 @@ aliases:
   - Base Server Reference
   - Base Server Layer
 related:
-  - "[[IFS Marble Language Reference]]"
+  - '[[IFS Marble Language Reference]]'
 ---
 
 # IFS Base Server Reference

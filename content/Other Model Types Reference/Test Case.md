@@ -1,5 +1,6 @@
 ---
 title: Test Case
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/confirmed
@@ -9,7 +10,7 @@ aliases:
   - projectiontest
   - testsuite
 related:
-  - "[[IFS Base Server Reference]]"
+  - '[[IFS Base Server Reference]]'
 ---
 
 # Test Case

@@ -1,5 +1,6 @@
 ---
 title: References and Arrays
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -10,11 +11,11 @@ aliases:
   - child array
   - FK reference
 related:
-  - "[[Entity]]"
-  - "[[Query]]"
-  - "[[Virtual]]"
-  - "[[Fields and LOV]]"
-  - "[[List]]"
+  - '[[Entity]]'
+  - '[[Query]]'
+  - '[[Virtual]]'
+  - '[[Fields and LOV]]'
+  - '[[List]]'
 ---
 
 # References and Arrays

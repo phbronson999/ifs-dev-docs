@@ -1,5 +1,6 @@
 ---
 title: Mobile App Model
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/confirmed
@@ -7,7 +8,7 @@ aliases:
   - app
   - .app
 related:
-  - "[[IFS Marble Language Reference]]"
+  - '[[IFS Marble Language Reference]]'
 ---
 
 # Mobile App Model

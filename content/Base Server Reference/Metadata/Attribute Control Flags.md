@@ -1,5 +1,6 @@
 ---
 title: Attribute Control Flags
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/model
@@ -10,7 +11,7 @@ aliases:
   - flag string
   - control flags
 related:
-  - "[[Entity (Base Server)]]"
+  - '[[Entity (Base Server)]]'
 ---
 
 # Attribute Control Flags

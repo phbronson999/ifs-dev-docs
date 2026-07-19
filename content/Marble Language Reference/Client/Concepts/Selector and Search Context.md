@@ -1,5 +1,6 @@
 ---
 title: Selector and Search Context
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -11,10 +12,10 @@ aliases:
   - pinnedsearchfields
   - requiredsearchfields
 related:
-  - "[[Pages]]"
-  - "[[List]]"
-  - "[[Fragment]]"
-  - "[[Entityset]]"
+  - '[[Pages]]'
+  - '[[List]]'
+  - '[[Fragment]]'
+  - '[[Entityset]]'
 ---
 
 # Selector and Search Context

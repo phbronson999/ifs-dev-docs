@@ -1,14 +1,15 @@
 ---
 title: Other Model Types Reference
+publish: true
 tags:
   - ifs-other-models
   - index
 aliases:
   - Other Model Types Reference
 related:
-  - "[[IFS Marble Language Reference]]"
-  - "[[IFS Base Server Reference]]"
-  - "[[Analytics Reference]]"
+  - '[[IFS Marble Language Reference]]'
+  - '[[IFS Base Server Reference]]'
+  - '[[Analytics Reference]]'
 ---
 
 # Other Model Types Reference

@@ -1,5 +1,6 @@
 ---
 title: Client Property Index
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/reference
@@ -9,11 +10,11 @@ aliases:
   - property reference
   - all properties
 related:
-  - "[[Thinking in Marble]]"
-  - "[[Glossary]]"
-  - "[[Fields and LOV]]"
-  - "[[Commands and Expressions]]"
-  - "[[Emphasis and Colors]]"
+  - '[[Thinking in Marble]]'
+  - '[[Glossary]]'
+  - '[[Fields and LOV]]'
+  - '[[Commands and Expressions]]'
+  - '[[Emphasis and Colors]]'
 ---
 
 # Client Property Index

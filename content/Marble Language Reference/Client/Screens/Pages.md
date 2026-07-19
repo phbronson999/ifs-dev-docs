@@ -1,5 +1,6 @@
 ---
 title: Pages
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -10,11 +11,11 @@ aliases:
   - startupmode
   - bind
 related:
-  - "[[Entityset]]"
-  - "[[List]]"
-  - "[[Group]]"
-  - "[[Navigator]]"
-  - "[[Client File Structure]]"
+  - '[[Entityset]]'
+  - '[[List]]'
+  - '[[Group]]'
+  - '[[Navigator]]'
+  - '[[Client File Structure]]'
 ---
 
 # Pages

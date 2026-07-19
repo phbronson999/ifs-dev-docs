@@ -1,5 +1,6 @@
 ---
 title: Dialog
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -9,11 +10,11 @@ aliases:
   - commandgroup
   - dialog Ok Cancel
 related:
-  - "[[Fragment]]"
-  - "[[Virtual]]"
-  - "[[Structure]]"
-  - "[[Group]]"
-  - "[[Commands and Expressions]]"
+  - '[[Fragment]]'
+  - '[[Virtual]]'
+  - '[[Structure]]'
+  - '[[Group]]'
+  - '[[Commands and Expressions]]'
 ---
 
 # Dialog

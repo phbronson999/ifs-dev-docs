@@ -1,5 +1,6 @@
 ---
 title: Virtual
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -9,12 +10,12 @@ aliases:
   - dialog virtual
   - assistant virtual
 related:
-  - "[[Entity]]"
-  - "[[Entityset]]"
-  - "[[Structure]]"
-  - "[[Action]]"
-  - "[[Dialog]]"
-  - "[[Assistant]]"
+  - '[[Entity]]'
+  - '[[Entityset]]'
+  - '[[Structure]]'
+  - '[[Action]]'
+  - '[[Dialog]]'
+  - '[[Assistant]]'
 ---
 
 # Virtual

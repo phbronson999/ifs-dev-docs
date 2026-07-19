@@ -1,14 +1,15 @@
 ---
 title: Fact Model
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
 aliases:
   - factmodel
 related:
-  - "[[Analysis Data Source]]"
-  - "[[Dimension Model]]"
-  - "[[Information Source Diagram]]"
+  - '[[Analysis Data Source]]'
+  - '[[Dimension Model]]'
+  - '[[Information Source Diagram]]'
 ---
 
 # Fact Model

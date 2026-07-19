@@ -1,5 +1,6 @@
 ---
 title: Stacked Calendar and Scheduling
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -10,8 +11,8 @@ aliases:
   - reports
   - progressarea
 related:
-  - "[[Data Views]]"
-  - "[[Commands and Expressions]]"
+  - '[[Data Views]]'
+  - '[[Commands and Expressions]]'
 ---
 
 # Stacked Calendar and Scheduling

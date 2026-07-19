@@ -1,5 +1,6 @@
 ---
 title: Lobby Data Source
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/lobby
@@ -7,7 +8,7 @@ aliases:
   - lobbydatasource
   - SQLDataSource
 related:
-  - "[[Analysis Data Source]]"
+  - '[[Analysis Data Source]]'
 ---
 
 # Lobby Data Source

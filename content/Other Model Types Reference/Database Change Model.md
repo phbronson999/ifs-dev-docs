@@ -1,5 +1,6 @@
 ---
 title: Database Change Model
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/confirmed
@@ -7,7 +8,7 @@ aliases:
   - dbchange
   - .dbchange
 related:
-  - "[[IFS Base Server Reference]]"
+  - '[[IFS Base Server Reference]]'
 ---
 
 # Database Change Model

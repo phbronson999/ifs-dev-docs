@@ -1,5 +1,6 @@
 ---
 title: Antlr Token (Marble Internal)
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/confirmed

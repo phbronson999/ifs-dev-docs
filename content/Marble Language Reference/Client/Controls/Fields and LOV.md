@@ -1,5 +1,6 @@
 ---
 title: Fields and LOV
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -14,11 +15,11 @@ aliases:
   - initialfocus
   - freeinput
 related:
-  - "[[List]]"
-  - "[[Group]]"
-  - "[[References and Arrays]]"
-  - "[[Commands and Expressions]]"
-  - "[[Function]]"
+  - '[[List]]'
+  - '[[Group]]'
+  - '[[References and Arrays]]'
+  - '[[Commands and Expressions]]'
+  - '[[Function]]'
 ---
 
 # Fields and LOV

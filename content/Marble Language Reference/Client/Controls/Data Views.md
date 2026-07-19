@@ -1,5 +1,6 @@
 ---
 title: Data Views
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -22,11 +23,11 @@ aliases:
   - yearview
   - data visualization
 related:
-  - "[[Emphasis and Colors]]"
-  - "[[Card and Sheet]]"
-  - "[[Charts]]"
-  - "[[List]]"
-  - "[[Pages]]"
+  - '[[Emphasis and Colors]]'
+  - '[[Card and Sheet]]'
+  - '[[Charts]]'
+  - '[[List]]'
+  - '[[Pages]]'
 ---
 
 # Data Views

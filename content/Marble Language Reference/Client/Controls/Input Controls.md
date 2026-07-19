@@ -1,5 +1,6 @@
 ---
 title: Input Controls
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -23,9 +24,9 @@ aliases:
   - address field
   - signature
 related:
-  - "[[Fields and LOV]]"
-  - "[[Group]]"
-  - "[[Emphasis and Colors]]"
+  - '[[Fields and LOV]]'
+  - '[[Group]]'
+  - '[[Emphasis and Colors]]'
 ---
 
 # Input Controls

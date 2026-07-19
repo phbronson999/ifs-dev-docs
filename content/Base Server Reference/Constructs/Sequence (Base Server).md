@@ -1,5 +1,6 @@
 ---
 title: Sequence (Base Server)
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/source
@@ -8,7 +9,7 @@ aliases:
   - SEQUENCE
   - IFS DB Sequence
 related:
-  - "[[Entity (Base Server)]]"
+  - '[[Entity (Base Server)]]'
 ---
 
 # Sequence (Base Server)

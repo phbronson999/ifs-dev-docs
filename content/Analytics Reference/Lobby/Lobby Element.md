@@ -1,12 +1,13 @@
 ---
 title: Lobby Element
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/lobby
 aliases:
   - lobbyelement
 related:
-  - "[[Lobby Data Source]]"
+  - '[[Lobby Data Source]]'
 ---
 
 # Lobby Element

@@ -1,5 +1,6 @@
 ---
 title: Overview Diagram
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/model
@@ -9,8 +10,8 @@ aliases:
   - entity relationship diagram
   - ERD
 related:
-  - "[[Entity (Base Server)]]"
-  - "[[Utility (Base Server)]]"
+  - '[[Entity (Base Server)]]'
+  - '[[Utility (Base Server)]]'
 ---
 
 # Overview Diagram

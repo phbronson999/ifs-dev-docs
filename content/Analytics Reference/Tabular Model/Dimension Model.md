@@ -1,14 +1,15 @@
 ---
 title: Dimension Model
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
 aliases:
   - dimensionmodel
 related:
-  - "[[Analysis Data Source]]"
-  - "[[Fact Model]]"
-  - "[[Information Source Diagram]]"
+  - '[[Analysis Data Source]]'
+  - '[[Fact Model]]'
+  - '[[Information Source Diagram]]'
 ---
 
 # Dimension Model

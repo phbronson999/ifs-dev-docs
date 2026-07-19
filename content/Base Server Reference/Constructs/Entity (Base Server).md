@@ -1,5 +1,6 @@
 ---
 title: Entity (Base Server)
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/model
@@ -9,11 +10,11 @@ aliases:
   - Logical Unit
   - LU
 related:
-  - "[[Attribute Control Flags]]"
-  - "[[Enumeration (Base Server)]]"
-  - "[[Utility (Base Server)]]"
-  - "[[Overview Diagram]]"
-  - "[[Entity (Base Server)]]"
+  - '[[Attribute Control Flags]]'
+  - '[[Enumeration (Base Server)]]'
+  - '[[Utility (Base Server)]]'
+  - '[[Overview Diagram]]'
+  - '[[Entity (Base Server)]]'
 ---
 
 # Entity (Base Server)

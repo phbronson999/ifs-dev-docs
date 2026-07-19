@@ -1,5 +1,6 @@
 ---
 title: Structure
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -8,11 +9,11 @@ aliases:
   - parameter structure
   - return structure
 related:
-  - "[[Virtual]]"
-  - "[[Action]]"
-  - "[[Function]]"
-  - "[[Attribute Modifiers]]"
-  - "[[Dialog]]"
+  - '[[Virtual]]'
+  - '[[Action]]'
+  - '[[Function]]'
+  - '[[Attribute Modifiers]]'
+  - '[[Dialog]]'
 ---
 
 # Structure

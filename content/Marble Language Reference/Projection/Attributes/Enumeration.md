@@ -1,5 +1,6 @@
 ---
 title: Enumeration
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -8,10 +9,10 @@ aliases:
   - enum
   - Enumeration() type
 related:
-  - "[[Entity]]"
-  - "[[Query]]"
-  - "[[Virtual]]"
-  - "[[Attribute Modifiers]]"
+  - '[[Entity]]'
+  - '[[Query]]'
+  - '[[Virtual]]'
+  - '[[Attribute Modifiers]]'
 ---
 
 # Enumeration

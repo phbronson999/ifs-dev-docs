@@ -1,5 +1,6 @@
 ---
 title: Layout Controls
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -13,11 +14,11 @@ aliases:
   - groupingfieldset
   - groupingfield
 related:
-  - "[[Pages]]"
-  - "[[Group]]"
-  - "[[List]]"
-  - "[[Dialog]]"
-  - "[[Card and Sheet]]"
+  - '[[Pages]]'
+  - '[[Group]]'
+  - '[[List]]'
+  - '[[Dialog]]'
+  - '[[Card and Sheet]]'
 ---
 
 # Layout Controls

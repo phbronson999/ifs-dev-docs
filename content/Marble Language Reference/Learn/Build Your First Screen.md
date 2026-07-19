@@ -1,5 +1,6 @@
 ---
 title: Build Your First Screen
+publish: true
 tags:
   - ifs-marble
   - ifs-marble/guide
@@ -10,11 +11,11 @@ aliases:
   - getting started tutorial
   - hello world
 related:
-  - "[[Thinking in Marble]]"
-  - "[[Glossary]]"
-  - "[[Client File Structure]]"
-  - "[[Projection File Structure]]"
-  - "[[Fragment]]"
+  - '[[Thinking in Marble]]'
+  - '[[Glossary]]'
+  - '[[Client File Structure]]'
+  - '[[Projection File Structure]]'
+  - '[[Fragment]]'
 ---
 
 # Build Your First Screen

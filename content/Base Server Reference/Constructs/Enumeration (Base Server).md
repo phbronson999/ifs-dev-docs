@@ -1,5 +1,6 @@
 ---
 title: Enumeration (Base Server)
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/model
@@ -8,8 +9,8 @@ aliases:
   - base server enumeration
   - enumerationname
 related:
-  - "[[Entity (Base Server)]]"
-  - "[[Enumeration]]"
+  - '[[Entity (Base Server)]]'
+  - '[[Enumeration]]'
 ---
 
 # Enumeration (Base Server)

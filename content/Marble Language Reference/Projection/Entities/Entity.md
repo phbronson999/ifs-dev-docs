@@ -1,19 +1,20 @@
 ---
 title: Entity
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
 aliases:
   - entity definition
-  - "@Override entity"
+  - '@Override entity'
   - CRUD entity
 related:
-  - "[[Entityset]]"
-  - "[[Attribute Modifiers]]"
-  - "[[References and Arrays]]"
-  - "[[Action]]"
-  - "[[Query]]"
-  - "[[Virtual]]"
+  - '[[Entityset]]'
+  - '[[Attribute Modifiers]]'
+  - '[[References and Arrays]]'
+  - '[[Action]]'
+  - '[[Query]]'
+  - '[[Virtual]]'
 ---
 
 # Entity

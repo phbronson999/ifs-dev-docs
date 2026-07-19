@@ -1,5 +1,6 @@
 ---
 title: Glossary
+publish: true
 tags:
   - ifs-marble
   - ifs-marble/reference
@@ -8,9 +9,9 @@ aliases:
   - IFS terms
   - definitions
 related:
-  - "[[Thinking in Marble]]"
-  - "[[Client File Structure]]"
-  - "[[Projection File Structure]]"
+  - '[[Thinking in Marble]]'
+  - '[[Client File Structure]]'
+  - '[[Projection File Structure]]'
 ---
 
 # Glossary

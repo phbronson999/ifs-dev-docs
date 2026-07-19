@@ -1,5 +1,6 @@
 ---
 title: Query
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -8,10 +9,10 @@ aliases:
   - read-only entity
   - view-based query
 related:
-  - "[[Entity]]"
-  - "[[Entityset]]"
-  - "[[Attribute Modifiers]]"
-  - "[[References and Arrays]]"
+  - '[[Entity]]'
+  - '[[Entityset]]'
+  - '[[Attribute Modifiers]]'
+  - '[[References and Arrays]]'
 ---
 
 # Query

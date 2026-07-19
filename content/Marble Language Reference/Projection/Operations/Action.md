@@ -1,5 +1,6 @@
 ---
 title: Action
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -10,11 +11,11 @@ aliases:
   - ludependencies
   - supportwarnings
 related:
-  - "[[Function]]"
-  - "[[Entity]]"
-  - "[[Virtual]]"
-  - "[[Commands and Expressions]]"
-  - "[[Structure]]"
+  - '[[Function]]'
+  - '[[Entity]]'
+  - '[[Virtual]]'
+  - '[[Commands and Expressions]]'
+  - '[[Structure]]'
 ---
 
 # Action

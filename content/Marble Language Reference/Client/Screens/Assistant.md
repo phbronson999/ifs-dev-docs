@@ -1,5 +1,6 @@
 ---
 title: Assistant
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -17,12 +18,12 @@ aliases:
   - restart command
   - warningsenabled
 related:
-  - "[[Virtual]]"
-  - "[[Group]]"
-  - "[[List]]"
-  - "[[Commands and Expressions]]"
-  - "[[Navigator]]"
-  - "[[Dialog]]"
+  - '[[Virtual]]'
+  - '[[Group]]'
+  - '[[List]]'
+  - '[[Commands and Expressions]]'
+  - '[[Navigator]]'
+  - '[[Dialog]]'
 ---
 
 # Assistant

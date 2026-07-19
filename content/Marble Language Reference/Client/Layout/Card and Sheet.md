@@ -1,5 +1,6 @@
 ---
 title: Card and Sheet
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -11,10 +12,10 @@ aliases:
   - summaryfield
   - card template
 related:
-  - "[[List]]"
-  - "[[Layout Controls]]"
-  - "[[Display Controls]]"
-  - "[[Data Views]]"
+  - '[[List]]'
+  - '[[Layout Controls]]'
+  - '[[Display Controls]]'
+  - '[[Data Views]]'
 ---
 
 # Card and Sheet

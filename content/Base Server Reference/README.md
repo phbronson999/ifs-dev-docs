@@ -1,5 +1,6 @@
 ---
 title: IFS Base Server Reference
+publish: true
 tags:
   - ifs-base-server
   - index
@@ -7,7 +8,7 @@ aliases:
   - Base Server Reference
   - Base Server Layer
 related:
-  - "[[IFS Marble Language Reference]]"
+  - '[[IFS Marble Language Reference]]'
 ---
 
 # IFS Base Server Reference
@@ -110,3 +111,4 @@ SORT file.name ASC
 - [[Overview Diagram]] — the visual entity relationship diagram
 - [[PL/SQL Annotations]] — @Override, @Final, @SecurityCheck etc.
 - [[IFS Marble Language Reference]] — the Aurena/projection layer that builds on this
+- [[Component Deployment Profile File]] — the `deploy.ini` that declares, versions, and upgrades the component these constructs belong to

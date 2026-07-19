@@ -1,15 +1,16 @@
 ---
 title: Information Source Diagram
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
 aliases:
   - informationsourcediagram
 related:
-  - "[[Fact Model]]"
-  - "[[Dimension Model]]"
-  - "[[Filter Model]]"
-  - "[[Analysis Data Source]]"
+  - '[[Fact Model]]'
+  - '[[Dimension Model]]'
+  - '[[Filter Model]]'
+  - '[[Analysis Data Source]]'
 ---
 
 # Information Source Diagram

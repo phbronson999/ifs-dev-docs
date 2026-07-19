@@ -1,5 +1,6 @@
 ---
 title: Attribute Modifiers
+publish: true
 tags:
   - ifs-marble/projection
   - ifs-marble/construct
@@ -11,11 +12,11 @@ aliases:
   - attribute format
   - required expression
 related:
-  - "[[Entity]]"
-  - "[[Query]]"
-  - "[[Virtual]]"
-  - "[[Structure]]"
-  - "[[Enumeration]]"
+  - '[[Entity]]'
+  - '[[Query]]'
+  - '[[Virtual]]'
+  - '[[Structure]]'
+  - '[[Enumeration]]'
 ---
 
 # Attribute Modifiers

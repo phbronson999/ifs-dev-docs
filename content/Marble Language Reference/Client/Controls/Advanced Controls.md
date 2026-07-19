@@ -1,5 +1,6 @@
 ---
 title: Advanced Controls
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -27,11 +28,11 @@ aliases:
   - icon command
   - emphasis Primary
 related:
-  - "[[Fields and LOV]]"
-  - "[[List]]"
-  - "[[Group]]"
-  - "[[Commands and Expressions]]"
-  - "[[Assistant]]"
+  - '[[Fields and LOV]]'
+  - '[[List]]'
+  - '[[Group]]'
+  - '[[Commands and Expressions]]'
+  - '[[Assistant]]'
 ---
 
 # Advanced Controls

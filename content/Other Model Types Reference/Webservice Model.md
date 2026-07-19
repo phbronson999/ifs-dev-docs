@@ -1,5 +1,6 @@
 ---
 title: Webservice Model
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/unconfirmed
@@ -7,7 +8,7 @@ aliases:
   - webservice
   - webservicemodel
 related:
-  - "[[Outbound Model]]"
+  - '[[Outbound Model]]'
 ---
 
 # Webservice Model

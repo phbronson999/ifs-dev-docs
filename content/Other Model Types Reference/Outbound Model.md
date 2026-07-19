@@ -1,5 +1,6 @@
 ---
 title: Outbound Model
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/confirmed
@@ -7,7 +8,7 @@ aliases:
   - outbound
   - .outbound
 related:
-  - "[[Scheduling Model]]"
+  - '[[Scheduling Model]]'
 ---
 
 # Outbound Model

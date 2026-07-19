@@ -1,5 +1,6 @@
 ---
 title: Navigator
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -9,9 +10,9 @@ aliases:
   - navigation tree
   - entry parent
 related:
-  - "[[Client File Structure]]"
-  - "[[Pages]]"
-  - "[[Assistant]]"
+  - '[[Client File Structure]]'
+  - '[[Pages]]'
+  - '[[Assistant]]'
 ---
 
 # Navigator
@@ -99,7 +100,7 @@ navigator {
 navigator {
    -- Root-level customer entry with nested sub-entries
    entry TiTracebackNavEntry parent TiCustomizationNavigatorRoot.TiCustomizationRootNavEntry at index 103 {
-      label = "Traceback";
+      label = "Tietex Traceback";
       -- Sub-entries reference named entries defined below (outside the navigator block)
       entry TiCardingBridgeNavEntry;
       entry TiWarpingBridgeEntry;

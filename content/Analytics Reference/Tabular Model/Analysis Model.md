@@ -1,5 +1,6 @@
 ---
 title: Analysis Model
+publish: true
 tags:
   - ifs-analytics
   - ifs-analytics/tabular
@@ -7,7 +8,7 @@ aliases:
   - analysismodel
   - Tabular Model
 related:
-  - "[[Analysis Data Source]]"
+  - '[[Analysis Data Source]]'
 ---
 
 # Analysis Model

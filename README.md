@@ -34,6 +34,18 @@ For the official, authoritative source, always defer to:
 - 📘 [IFS TechDocs](https://docs.ifs.com/techdocs)
 - 🌐 [IFS Developer Portal](https://developer.ifs.com/)
 
+## 🔄 Updating the Site
+
+Content in `content/` is synced from a private Obsidian vault (`IFS-Tech-Docs`), not edited directly in this repo. To publish vault updates:
+
+```
+npm run sync
+```
+
+This mirrors the sections listed in `sync.config.json` from the vault into `content/` — a note only syncs if its frontmatter has `publish: true` (opt-in; notes without it are skipped). It's local-only and never commits or pushes — review the result with `git status`/`git diff`, then commit and push to `main` when ready. Pushing triggers the GitHub Actions workflow that builds and deploys the site automatically.
+
+To publish a new vault section, add its folder name to `sync.config.json`'s `include` list.
+
 ## 🚧 Status
 
 This is a **work in progress**. Some explanations, examples, or opinions here may be incomplete or outright wrong — they'll be corrected as they're found. The goal isn't to be authoritative; it's to fill in real gaps that customer developers hit at every skill level, using whatever's actually been useful in practice. See [TODO.md](TODO.md) for known issues.

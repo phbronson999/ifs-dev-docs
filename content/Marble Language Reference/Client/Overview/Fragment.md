@@ -1,5 +1,6 @@
 ---
 title: Fragment
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/projection
@@ -11,12 +12,12 @@ aliases:
   - PROJECTION FRAGMENTS
   - fragment include
 related:
-  - "[[Client File Structure]]"
-  - "[[Projection File Structure]]"
-  - "[[Dialog]]"
-  - "[[Structure]]"
-  - "[[Action]]"
-  - "[[Function]]"
+  - '[[Client File Structure]]'
+  - '[[Projection File Structure]]'
+  - '[[Dialog]]'
+  - '[[Structure]]'
+  - '[[Action]]'
+  - '[[Function]]'
 ---
 
 # Fragment

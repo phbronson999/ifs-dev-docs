@@ -1,5 +1,6 @@
 ---
 title: Declaration Order Rules
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/reference
@@ -8,11 +9,11 @@ aliases:
   - declaration order
   - label must be first
 related:
-  - "[[Assistant]]"
-  - "[[Dialog]]"
-  - "[[Pages]]"
-  - "[[List]]"
-  - "[[Group]]"
+  - '[[Assistant]]'
+  - '[[Dialog]]'
+  - '[[Pages]]'
+  - '[[List]]'
+  - '[[Group]]'
 ---
 
 # Declaration Order Rules

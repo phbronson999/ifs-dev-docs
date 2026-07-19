@@ -1,5 +1,6 @@
 ---
 title: Cross Edition Trigger (Base Server)
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/source
@@ -9,8 +10,8 @@ aliases:
   - XET
   - Cross Edition Trigger
 related:
-  - "[[Entity (Base Server)]]"
-  - "[[Sequence (Base Server)]]"
+  - '[[Entity (Base Server)]]'
+  - '[[Sequence (Base Server)]]'
 ---
 
 # Cross Edition Trigger (Base Server)

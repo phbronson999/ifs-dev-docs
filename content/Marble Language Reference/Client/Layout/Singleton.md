@@ -1,5 +1,6 @@
 ---
 title: Singleton
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -10,10 +11,10 @@ aliases:
   - singleton bind
   - singleton alias
 related:
-  - "[[List]]"
-  - "[[Group]]"
-  - "[[Pages]]"
-  - "[[../../Projection/Entities/Singleton|Singleton (Projection)]]"
+  - '[[List]]'
+  - '[[Group]]'
+  - '[[Pages]]'
+  - '[[../../Projection/Entities/Singleton|Singleton (Projection)]]'
 ---
 
 # Singleton

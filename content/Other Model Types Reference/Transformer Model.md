@@ -1,5 +1,6 @@
 ---
 title: Transformer Model
+publish: true
 tags:
   - ifs-other-models
   - ifs-other-models/unconfirmed

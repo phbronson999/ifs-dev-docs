@@ -1,5 +1,6 @@
 ---
 title: List
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -10,11 +11,11 @@ aliases:
   - editmode SingleCellEdit
   - orderby
 related:
-  - "[[Pages]]"
-  - "[[Fields and LOV]]"
-  - "[[Commands and Expressions]]"
-  - "[[Group]]"
-  - "[[References and Arrays]]"
+  - '[[Pages]]'
+  - '[[Fields and LOV]]'
+  - '[[Commands and Expressions]]'
+  - '[[Group]]'
+  - '[[References and Arrays]]'
 ---
 
 # List

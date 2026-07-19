@@ -1,5 +1,6 @@
 ---
 title: Group
+publish: true
 tags:
   - ifs-marble/client
   - ifs-marble/construct
@@ -8,11 +9,11 @@ aliases:
   - form group
   - field group
 related:
-  - "[[List]]"
-  - "[[Fields and LOV]]"
-  - "[[Dialog]]"
-  - "[[Assistant]]"
-  - "[[Pages]]"
+  - '[[List]]'
+  - '[[Fields and LOV]]'
+  - '[[Dialog]]'
+  - '[[Assistant]]'
+  - '[[Pages]]'
 ---
 
 # Group

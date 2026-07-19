@@ -1,5 +1,6 @@
 ---
 title: Common Patterns
+publish: true
 tags:
   - ifs-marble
   - ifs-marble/guide
@@ -11,11 +12,11 @@ aliases:
   - how-to
   - common patterns
 related:
-  - "[[Thinking in Marble]]"
-  - "[[Build Your First Screen]]"
-  - "[[Fields and LOV]]"
-  - "[[Commands and Expressions]]"
-  - "[[Display Controls]]"
+  - '[[Thinking in Marble]]'
+  - '[[Build Your First Screen]]'
+  - '[[Fields and LOV]]'
+  - '[[Commands and Expressions]]'
+  - '[[Display Controls]]'
 ---
 
 # Common Patterns

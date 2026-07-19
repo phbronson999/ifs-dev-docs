@@ -1,5 +1,6 @@
 ---
 title: IFS Analytics Reference
+publish: true
 tags:
   - ifs-analytics
   - index
@@ -7,8 +8,8 @@ aliases:
   - Analytics Reference
   - Analytics Layer
 related:
-  - "[[IFS Marble Language Reference]]"
-  - "[[IFS Base Server Reference]]"
+  - '[[IFS Marble Language Reference]]'
+  - '[[IFS Base Server Reference]]'
 ---
 
 # IFS Analytics Reference

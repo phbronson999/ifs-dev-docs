@@ -1,18 +1,19 @@
 ---
 title: PL/SQL Annotations
+publish: true
 tags:
   - ifs-base-server
   - ifs-base-server/source
 aliases:
   - plsql annotations
-  - "@Override"
-  - "@Final"
-  - "@SecurityCheck"
-  - "@DynamicComponentDependency"
+  - '@Override'
+  - '@Final'
+  - '@SecurityCheck'
+  - '@DynamicComponentDependency'
   - annotations
 related:
-  - "[[Entity (Base Server)]]"
-  - "[[Utility (Base Server)]]"
+  - '[[Entity (Base Server)]]'
+  - '[[Utility (Base Server)]]'
 ---
 
 # PL/SQL Annotations
